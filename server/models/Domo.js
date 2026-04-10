@@ -15,6 +15,11 @@ const DomoSchema = new mongoose.Schema({
         min: 0,
         required: true,
     },
+    animal: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -29,6 +34,8 @@ const DomoSchema = new mongoose.Schema({
 DomoSchema.statics.toAPI = (doc) => ({
     name: doc.name,
     age: doc.age,
+    animal: doc.animal,
+    _id: doc._id,
 });
 
 const DomoModel = mongoose.model('Domo', DomoSchema);

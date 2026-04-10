@@ -39,8 +39,33 @@ const hideError = () => {
     document.getElementById('domoMessage').classList.add('hidden');
 };
 
+//Create a helper function for delete domos
+
+const sendDelete = async (url, handler) => {
+    const response = await fetch(url, {
+        method: 'DELETE',
+    });
+
+    const result = await response.json();
+
+    document.getElementById('domoMessage').classList.add('hidden');
+
+    if (result.redirect) {
+        window.location = result.redirect;
+    }
+
+    if (result.error) {
+        handleError(result.error);
+    }
+
+    if (handler) {
+        handler(result);
+    }
+};
+
 module.exports = {
     handleError,
     sendPost,
+    sendDelete,
     hideError,
 };

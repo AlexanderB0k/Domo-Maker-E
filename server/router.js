@@ -17,6 +17,7 @@ const router = (app) => {
 
     app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 
+    app.delete('/deleteDomo/:id', mid.requiresLogin, controllers.Domo.deleteDomo);
 }
 
 module.exports = router;
